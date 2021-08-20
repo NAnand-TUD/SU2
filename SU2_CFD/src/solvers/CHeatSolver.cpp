@@ -505,6 +505,32 @@ void CHeatSolver::Viscous_Residual(CGeometry *geometry, CSolver **solver_contain
   }
 }
 
+void CHeatSolver::Source_Residual(CGeometry *geometry,
+                      CSolver **solver_container,
+                      CNumerics **numerics_container,
+                      CConfig *config,
+                      unsigned short iMesh) {
+auto HeatGen = config->GetSolid_Heat_Generation();
+unsigned long nPointDomain = geometry->GetnPointDomain(), iPoint;
+unsigned short iVar;
+
+if (HeatGen != 0.0) {
+    /*--- loop over points ---*/
+    SU2_OMP_FOR_STAT(omp_chunk_size)
+    for (iPoint = 0; iPoint < nPointDomain; iPoint++) {
+
+      /*--- Get control volume ---*/
+      su2double Volume = geometry->nodes->GetVolume(iPoint);
+
+      /*--- Get volumetric heat generation term and add to residual ---*/
+      for (iVar = 0; iVar < nVar; iVar++) {
+        LinSysRes(iPoint,iVar) -= Volume * HeatGen;
+      }
+    }
+    END_SU2_OMP_FOR
+  }
+}
+
 void CHeatSolver::Set_Heatflux_Areas(CGeometry *geometry, CConfig *config) {
 
   string HeatFlux_Tag, Marker_Tag;

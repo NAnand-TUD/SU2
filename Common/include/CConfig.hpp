@@ -795,6 +795,7 @@ private:
   Mu_ConstantND,         /*!< \brief Non-dimensional constant viscosity for ConstantViscosity model.  */
   Thermal_Conductivity_Constant,   /*!< \brief Constant thermal conductivity for ConstantConductivity model.  */
   Thermal_Conductivity_ConstantND, /*!< \brief Non-dimensional constant thermal conductivity for ConstantConductivity model.  */
+  Solid_Heat_Generation,   /*!< \brief Solid Heat Generation for Volumetric Heat Source term in HeatSolver model.  */
   Mu_Ref,                /*!< \brief Reference viscosity for Sutherland model.  */
   Mu_RefND,              /*!< \brief Non-dimensional reference viscosity for Sutherland model.  */
   Mu_Temperature_Ref,    /*!< \brief Reference temperature for Sutherland model.  */
@@ -3728,6 +3729,11 @@ public:
    */
     su2double GetThermal_Conductivity_ConstantND(void) const { return Thermal_Conductivity_ConstantND; }
 
+  /*!
+   * \brief Get the value of the thermal conductivity.
+   * \return Thermal conductivity.
+   */
+  su2double GetSolid_Heat_Generation(void) const { return Solid_Heat_Generation; }
 
   /*!
    * \brief Get the value of the reference viscosity for Sutherland model.

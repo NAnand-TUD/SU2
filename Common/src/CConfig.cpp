@@ -1205,7 +1205,8 @@ void CConfig::SetConfig_Options() {
 
  /* DESCRIPTION: default value for AIR */
   addDoubleOption("THERMAL_CONDUCTIVITY_CONSTANT", Thermal_Conductivity_Constant , 0.0257);
-
+ /* DESCRIPTION: default value for AIR */
+  addDoubleOption("SOLID_HEAT_GENERATION", Solid_Heat_Generation , 0.0);
   /*--- Options related to temperature polynomial coefficients for fluid models. ---*/
 
   /* DESCRIPTION: Definition of the temperature polynomial coefficients for specific heat Cp. */
